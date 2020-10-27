@@ -1,21 +1,17 @@
 import sys
 import pickle
 
+
 def read_file(filename):
     # tries to open the file
     try:
-        file =open(filename,"rb")
+        file = open(filename, "rb")
     # if it cannot then prints error
     except:
         print(f"An error occurred while trying to read the file.")
         exit()
     # returns file contents as dictionary
     return pickle.load(file)
-
-
-
-
-
 
 
 def map_to_int(measurements):
@@ -28,10 +24,24 @@ def map_to_int(measurements):
 
 
 def find_faulty(primary, secondary, threshold):
-    pass
+    faulty_sensors = set()
+    #loops 
+    for key, value in primary.items():
+        secondaryValue = secondary.get(key)
+        if abs(value - secondaryValue) > threshold:
+            faulty_sensors.add(key)
+
+    return faulty_sensors
+
 
 def display_warnings(faulty_sensors):
-    pass
+    print("Analyzis of the provided files is complete.")
+    print('-' * 42)
+
+    print("The following sensors differ more than 2°")
+    # looping through the list to get the value of each item in the list
+    for faulty_sensor in faulty_sensors:
+        print(faulty_sensor)
 
 
 def main():
