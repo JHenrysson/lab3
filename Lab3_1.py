@@ -8,7 +8,7 @@ def read_file(filename):
         file = open(filename, "rb")
     # if it cannot then prints error
     except:
-        print(f"Error: The files given as arguments are not valid.")
+        print(f'Error: The files given as arguments are not valid.')
         exit()
     # returns file contents as dictionary
     return pickle.load(file)

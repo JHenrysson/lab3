@@ -11,14 +11,13 @@ def display_menu():
 def cross_reference(files):
     # all the numbers in all the list
     numbers = set()
-
     for file in files:
         # holds numbers from a specific file
         numbers_in_file = set()
         try:
             file = open(file, "r")
         except:
-            print(f"Error: There was a problem with at least one of the files.")
+            print("Error: There was a problem with at least one of the files.")
             exit()
         end = False
         # loops until the end of the file
@@ -43,7 +42,7 @@ def map_numbers_to_names(numbers, filename):
         file = open(filename, "rb")
         # if it cannot then prints error
     except:
-        print(f"An error occurred while trying to read the file.")
+        print("An error occurred while trying to read the file.")
         exit()
 
     dict = pickle.load(file)
@@ -56,7 +55,7 @@ def map_numbers_to_names(numbers, filename):
 
 
 def display_suspects(names):
-    # if there are common vcalues
+    # if there are common values
     print("The following persons was present on all crime scenes:")
     print("-" * 54)
     if len(names) == 0:
@@ -67,6 +66,7 @@ def display_suspects(names):
 
 
 def main():
+    # takes the argument
     filename = sys.argv[1]
     files = []
 
@@ -80,7 +80,6 @@ def main():
             # adds to the file list
             files.append(name)
         elif choice == '2':
-
             numbers = cross_reference(files)
             names = map_numbers_to_names(numbers, filename)
             display_suspects(names)
